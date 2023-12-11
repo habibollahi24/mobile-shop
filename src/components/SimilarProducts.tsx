@@ -1,6 +1,7 @@
 import { Stack, Box, Typography, Rating } from "@mui/material";
 import { useSimilarProduct } from "../hooks/useSimilarProduct";
 import { Link } from "react-router-dom";
+import { SimilarLoader } from "../ui/Loading";
 
 type Props = {
   category: string;
@@ -9,21 +10,10 @@ type Props = {
 function SimilarProducts({ category }: Props) {
   const { isPending, similarProduct } = useSimilarProduct(category);
 
-  if (isPending) return <p>loading ...</p>;
+  if (isPending) return <SimilarLoader />;
 
   return (
     <>
-      <Typography
-        variant="h5"
-        color="text.secondary"
-        sx={{
-          fontWeight: "400",
-          px: 2,
-          py: 4,
-        }}
-      >
-        Similar Products
-      </Typography>
       <Stack
         direction="row"
         spacing={2}

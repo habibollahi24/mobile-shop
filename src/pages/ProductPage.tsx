@@ -13,6 +13,7 @@ import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import SimilarProducts from "../components/SimilarProducts";
 import { useEffect } from "react";
 import ButtonsAction from "../components/ButtonsAction";
+import { ProductLoader } from "../ui/Loading";
 function ProductPage() {
   const { id } = useParams();
   const { isPending, product } = useProduct(id!);
@@ -21,7 +22,7 @@ function ProductPage() {
     window.scrollTo(0, 0);
   }, [id]);
 
-  if (isPending) return <p>loading ...</p>;
+  if (isPending) return <ProductLoader />;
 
   return (
     <>
@@ -89,6 +90,17 @@ function ProductPage() {
       >
         <ButtonsAction product={product} />
       </Stack>
+      <Typography
+        variant="h5"
+        color="text.secondary"
+        sx={{
+          fontWeight: "400",
+          px: 2,
+          py: 4,
+        }}
+      >
+        Similar Products
+      </Typography>
       <SimilarProducts category={product.category} />
     </>
   );
