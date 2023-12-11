@@ -26,6 +26,7 @@ export const useProduct = (id: string) => {
         setIsPending(false);
       }
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return { product, isPending };
